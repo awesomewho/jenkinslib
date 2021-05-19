@@ -50,7 +50,7 @@ stages {
             timeout(time:30, unit:"MINUTES"){
                 script{
                     println("代码扫描")
-
+                    // 调用共享库定义的PrintMes函数
                     tools.PrintMes("this is jenkins share library.")
                 }
             }
