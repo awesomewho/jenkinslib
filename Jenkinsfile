@@ -1,5 +1,5 @@
 // 引用在github建立的共享jinkinslib库
-@library('jenkinslib')
+@Library('jenkinslib') _
 def tools = new org.devops.tools()
 
 String workspace = "/tmp/jenkins"
