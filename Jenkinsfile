@@ -27,7 +27,7 @@ stages {
         steps{  // 步骤
             timeout(time:5, unit:"MINUTES"){ // 步骤超时时间
                 script{ // 填写运行代码
-                    tools.PrintMessage("获取代码",green)
+                    tools.PrintMessage("获取代码",'green')
                     println('获取代码')
                 }
             }
@@ -39,7 +39,7 @@ stages {
         steps{
             timeout(time:20, unit:"MINUTES"){
                 script{
-                    tools.PrintMessage("应用打包",green)
+                    tools.PrintMessage("应用打包",'green')
                     println('应用打包')
                 }
             }
@@ -52,7 +52,7 @@ stages {
             timeout(time:30, unit:"MINUTES"){
                 script{
                     println("代码扫描")
-                    tools.PrintMessage("代码扫描",green)
+                    tools.PrintMessage("代码扫描",'green')
                     // 调用共享库定义的PrintMes函数
                     tools.PrintMes("this is jenkins share library.")
                 }
@@ -73,7 +73,7 @@ post {
 
     success {
         script{
-            tools.PrintMessage("构建成功",red)
+            tools.PrintMessage("构建成功",'red')
             currentBuild.description += "\n 构建成功!"
         }
     }
