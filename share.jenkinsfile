@@ -12,6 +12,7 @@ String buildType = "${env.buildType}"
 String buildShell = "${env.buildShell}"
 String deployHosts = "${env.deployHosts}"
 
+// 定义构建时传入的gitlab项目地址和分支名称
 String scrUrl = "${env.srcUrl}"
 String branchName = "${env.branchName}"
 
@@ -22,6 +23,14 @@ pipeline {
     stages {
         stage("checkout") {
             steps {
+                
+                if ( "${runOpts}" == "GitlabPush" ) {
+                    branchName = branch - "refs/heads/"
+                }
+                
+                println("${branchName}")
+                
+                
                 script {
                     checkout([$class: 'GitSCM', branches: [[name: "${branchName}"]], extensions: [], userRemoteConfigs: [[credentialsId: 'a61154ed-c244-4737-9393-1fc8b13c25d3', url: "${srcUrl}"]]])
                 }
