@@ -1,5 +1,5 @@
 pipeline{
-  agent { node { lable "smartdns"} }
+  agent { node { lable "node1"} }
   
   stages {
     stage("build"){
