@@ -8,7 +8,7 @@ pipeline {
         stage("mavenBuild") {
         steps {
             script {
-                mvn_home = tool "MAVEN_HOME"
+                mvn_home = tool "MAVEN"
                 sh "${mvn_home}/bin/mvn ${buildShell}"
                 }
             }
