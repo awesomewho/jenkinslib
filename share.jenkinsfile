@@ -18,15 +18,15 @@ String branchName = "${env.branchName}"
 
 pipeline {
     agent { node { label "node1"} }
-    
+
     // 构建阶段
     stages {
         stage("checkout") {
-            steps {            
+            steps {
                 script {
                     if ( "${runOpts}" == "GitlabPush" ) {
-                    branchName = branch - "refs/heads/"
-                }
+                        branchName = branch - "refs/heads/"
+                        }
                     println("${branchName}")
                     checkout([$class: 'GitSCM', branches: [[name: "${branchName}"]], extensions: [], userRemoteConfigs: [[credentialsId: 'a61154ed-c244-4737-9393-1fc8b13c25d3', url: "${srcUrl}"]]])
                 }
@@ -36,7 +36,7 @@ pipeline {
             steps {
                 script {
                     build.Build(buildType, buildShell)
-                    
+
                     deploy.AnsibleDeploy("${deployHosts}", "-m ping")
                 }
             }
