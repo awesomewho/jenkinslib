@@ -9,7 +9,7 @@ def Build(buildType, buildShell) {
     
     if ( "${buildType}" == "npm" ) {
         sh "export NPM_HOME=${buildHome} && export PATH=\$NPM_HOME/bin:\$PATH && (${buildHome}/bin/${buildType} ${buildShell})"
-    } 
-    
-    sh "${buildHome}/bin/${buildType} ${buildShell}"
+    } else {
+        sh "${buildHome}/bin/${buildType} ${buildShell}"
+    }
 }
