@@ -40,7 +40,7 @@ pipeline {
             steps {
                 script {
                     npm_home = tool "NPM"
-                        sh "${npm_home}/bin/node ${buildShell}"
+                        sh "${npm_home}/bin/npm ${buildShell}"
                             }
                         }
                     }
