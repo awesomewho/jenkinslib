@@ -5,7 +5,7 @@
 
 // 实例化build方法
 def build = new org.devops.build()
-def build = new org.devops.deploy()
+def deploy = new org.devops.deploy()
 
 // 调用参数构建参数buildType buildShell和deployHosts
 String buildType = "${env.buildType}"
