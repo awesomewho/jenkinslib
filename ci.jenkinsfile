@@ -1,14 +1,14 @@
-pipeline{
-  agent { node{lable "node1"}}
-  
-  stages {
-    stage("build"){
-      steps{
-        script{
-          mvn_home = tool "MAVEN_HOME"
-          sh "${mvn_home/bin/mvn -v}"
+pipeline {
+    agent { node { label "node1" } }
+
+    stages {
+        stage("build") {
+        steps {
+            script {
+                mvn_home = tool "MAVEN_HOME"
+                sh "${mvn_home/bin/mvn -v}"
+                }
+            }
         }
-      }
     }
-  }
 }
