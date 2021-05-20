@@ -8,19 +8,32 @@ pipeline {
         stage("mavenBuild") {
         steps {
             script {
-                mvn_home = tool "MAVEN_HOME"
-                sh "${mvn_home}/bin/mvn ${buildShell}"
+                try {
+                    mvn_home = tool "MAVEN_HOME"
+                    sh "${mvn_home}/bin/mvn ${buildShell}"
+                    } catch(e) {
+                        println(e)
+                    }
                 }
             }
         }
-        
+
         stage("antBuild") {
-                steps {
-                    script {
-                        ant_home = tool "ANT"
+            steps {
+                script {
+                    ant_home = tool "ANT"
                         sh "${ant_home}/bin/ant ${buildShell}"
                         }
                     }
                 }
+
+        stage("gradleBuild") {
+            steps {
+                script {
+                    gradle_home = tool "GRADLE"
+                        sh "${gradle_home}/bin/gradle ${buildShell}"
+                                }
+                            }
+                        }
     }
 }
