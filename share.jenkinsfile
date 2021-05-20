@@ -1,20 +1,27 @@
 #!groovy
 
+// 调用ShareLibray jenkinslib@main
 @Library('jenkinslib@main') _
 
+// 实例化build方法
+def build = new org.devops.build()
 def build = new org.devops.build()
 
+// 调用参数构建参数buildType buildShell和deployHosts
 String buildType = "${env.buildType}"
 String buildShell = "${env.buildShell}"
+String deployHosts = "${env.deployHosts}"
 
 pipeline {
     agent { node { label "node1"} }
-
+    // 构建阶段
     stages {
         stage("build") {
             steps {
                 script {
                     build.Build(buildType, buildShell)
+                    
+                    deploy.AnsibleDeploy("${deployHosts}", "-m ping")
                 }
             }
         }
