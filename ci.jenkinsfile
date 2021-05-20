@@ -18,22 +18,22 @@ pipeline {
             }
         }
 
-        stage("antBuild") {
-            steps {
-                script {
-                    ant_home = tool "ANT"
-                        sh "${ant_home}/bin/ant ${buildShell}"
-                        }
-                    }
+    stage("antBuild") {
+        steps {
+            script {
+                ant_home = tool "ANT"
+                sh "${ant_home}/bin/ant ${buildShell}"
                 }
+            }
+        }
 
-        stage("gradleBuild") {
-            steps {
-                script {
-                    gradle_home = tool "GRADLE"
-                        sh "${gradle_home}/bin/gradle ${buildShell}"
-                                }
-                            }
-                        }
+    stage("gradleBuild") {
+        steps {
+            script {
+                gradle_home = tool "GRADLE"
+                    sh "${gradle_home}/bin/gradle ${buildShell}"
+                }
+            }
+        }
     }
 }
