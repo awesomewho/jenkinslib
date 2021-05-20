@@ -1,0 +1,14 @@
+pipeline{
+  agent { node { lable "smartdns"} }
+  
+  stages {
+    stage("build"){
+      steps{
+        script{
+          mvn_home = tool "MAVEN_HOME"
+          sh "${mvn_home/bin/mvn -v}"
+        }
+      }
+    }
+  }
+}
