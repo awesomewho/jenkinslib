@@ -27,9 +27,9 @@ pipeline {
                 script {
                     println("$branch")
                     println("$banchName")
-                    if ("${runOpts}" == "GitlabPush") {
-                        branchName = branch - "refs/heads/"
-                        }
+                    //if ("${runOpts}" == "GitlabPush") {
+                    //    branchName = branch - "refs/heads/"
+                    //    }
                     
                     println("${branchName}")
                     checkout([$class: 'GitSCM', branches: [[name: "${branchName}"]], extensions: [], userRemoteConfigs: [[credentialsId: 'a61154ed-c244-4737-9393-1fc8b13c25d3', url: "${srcUrl}"]]])
