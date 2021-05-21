@@ -11,6 +11,7 @@ def deploy = new org.devops.deploy()
 String buildType = "${env.buildType}"
 String buildShell = "${env.buildShell}"
 String deployHosts = "${env.deployHosts}"
+String runOpts = "${env.runOpts}"
 
 // 定义构建时传入的gitlab项目地址和分支名称
 String scrUrl = "${env.srcUrl}"
