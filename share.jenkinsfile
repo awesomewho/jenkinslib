@@ -23,6 +23,7 @@ pipeline {
     stages {
         stage("checkout") {
             steps {
+                println("$branch")
                 script {
                     println("$branch")
                     println("$banchName")
