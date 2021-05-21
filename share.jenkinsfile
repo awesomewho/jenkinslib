@@ -24,6 +24,8 @@ pipeline {
         stage("checkout") {
             steps {
                 script {
+                    println("$branch")
+                    println("$banchName")
                     if ("${runOpts}" == "GitlabPush") {
                         branchName = branch - "refs/heads/"
                         }
