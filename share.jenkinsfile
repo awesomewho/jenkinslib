@@ -11,7 +11,6 @@ def deploy = new org.devops.deploy()
 String buildType = "${env.buildType}"
 String buildShell = "${env.buildShell}"
 String deployHosts = "${env.deployHosts}"
-String runOpts = "${env.runOpts}"
 
 // 定义构建时传入的gitlab项目地址和分支名称
 String scrUrl = "${env.srcUrl}"
@@ -24,9 +23,9 @@ pipeline {
         stage("Checkout"){
             steps {
                 script {
-                    if("${runOpts}" == "GitlabPush") {
-                        branchName = branch - "refs/heads/"
-                    }
+                    //if("${runOpts}" == "GitlabPush") {
+                    //    branchName = branch - "refs/heads/"
+                    //}
                     
                     println("${branchName}")
                     checkout([$class: 'GitSCM', branches: [[name: "${branchName}"]], extensions: [], userRemoteConfigs: [[credentialsId: 'a61154ed-c244-4737-9393-1fc8b13c25d3', url: "${srcUrl}"]]]) 
