@@ -18,7 +18,7 @@ String scrUrl = "${env.srcUrl}"
 String branchName = "${env.branchName}"
 
 if ( "${runOpts}" == "GitlabPush" ) {
-    branchName = _branch - "refs/heads/"
+    branchName = branch - "refs/heads/"
     println("${branchName}")
     
     currentBuild.description = "Trigger by ${userName} ${branch}"
