@@ -16,19 +16,18 @@ String deployHosts = "${env.deployHosts}"
 String scrUrl = "${env.srcUrl}"
 String branchName = "${env.branchName}"
 
+if ( "${runOpts}" == "GitlabPush" ) {
+    branchName = branch - "refs/heads/"
+    println("${branchName}")
+}
+
 pipeline {
     agent { node { label "node1"} }
 
     stages {
         stage("Checkout"){
             steps {
-                script {
-                    try {
-                        "${runOpts}" == "GitlabPush"
-                    } catch(e) {
-                        print(e)
-                    }
-                    
+                script {                   
                     println("${branchName}")
                     checkout([$class: 'GitSCM', branches: [[name: "${branchName}"]], extensions: [], userRemoteConfigs: [[credentialsId: 'a61154ed-c244-4737-9393-1fc8b13c25d3', url: "${srcUrl}"]]]) 
                 }
