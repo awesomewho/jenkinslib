@@ -30,8 +30,8 @@ pipeline {
     stages {
         stage("Checkout"){
             steps {
-                println{"下载代码"}
-                script {                   
+                script {
+                    println{"下载代码"}
                     println("${branchName}")
                     checkout([$class: 'GitSCM', branches: [[name: "${branchName}"]], extensions: [], userRemoteConfigs: [[credentialsId: 'a61154ed-c244-4737-9393-1fc8b13c25d3', url: "${srcUrl}"]]]) 
                 }
