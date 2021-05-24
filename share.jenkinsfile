@@ -7,6 +7,7 @@
 def build = new org.devops.build()
 def deploy = new org.devops.deploy()
 def tools = new org.devops.tools()
+def toemail = new org.devops.toemail()
 
 // 调用参数构建参数buildType buildShell和deployHosts
 String buildType = "${env.buildType}"
@@ -58,19 +59,19 @@ pipeline {
             
             success {
                 script {
-                    println("success")
+                    tomail.Email("流水线构建成功",userEmail)
                 }
             }
             
             failure {
                 script {
-                    println("failure")
+                    tomail.Email("流水线构建失败",userEmail)
                 }
             }
             
             aborted {
                 script {
-                    println("aborted")
+                    tomail.Email("流水线构建被取消",userEmail)
                 }
             }
         }
