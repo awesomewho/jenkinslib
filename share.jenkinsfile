@@ -31,7 +31,7 @@ pipeline {
         stage("Checkout"){
             steps {
                 script {
-                    tools.PrintMessage{"下载代码","green"}
+                    tools.PrintMessage("下载代码","green")
                     println("${branchName}")
                     checkout([$class: 'GitSCM', branches: [[name: "${branchName}"]], extensions: [], userRemoteConfigs: [[credentialsId: 'a61154ed-c244-4737-9393-1fc8b13c25d3', url: "${srcUrl}"]]]) 
                 }
@@ -41,7 +41,7 @@ pipeline {
         stage("Build") {
             steps {
                 script {
-                    tools.PrintMessage{"执行打包","red"}
+                    tools.PrintMessage("执行打包","red")
                     build.Build(buildType, buildShell)
                     deploy.AnsibleDeploy("${deployHosts}", "-m ping")
                 }
