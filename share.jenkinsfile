@@ -45,7 +45,9 @@ pipeline {
                 }
             }
         }    
-        post {
+    }
+    
+    post {
             always {
                 script {
                     println("always")
@@ -69,6 +71,5 @@ pipeline {
                     println("aborted")
                 }
             }
-        }   
-    }
+        }
 }
