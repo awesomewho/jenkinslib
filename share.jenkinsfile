@@ -17,12 +17,12 @@ String deployHosts = "${env.deployHosts}"
 String scrUrl = "${env.srcUrl}"
 String branchName = "${env.branchName}"
 
-if ( "${runOpts}" == "GitlabPush" ) {
-    branchName = _branch - "refs/heads/"
-    println("${branchName}")
-    
-    currentBuild.description = "Trigger by ${userName} ${branch}"
-}
+//if ( "${runOpts}" == "GitlabPush" ) {
+//    branchName = _branch - "refs/heads/"
+//    println("${branchName}")
+//    
+//    currentBuild.description = "Trigger by ${userName} ${branch}"
+//}
 
 pipeline {
     agent { node { label "node1"} }
@@ -41,7 +41,7 @@ pipeline {
         stage("Build") {
             steps {
                 script {
-                    tools.PrintMessage{"执行打包", "blue"}
+                    tools.PrintMessage{"执行打包", "red"}
                     build.Build(buildType, buildShell)
                     deploy.AnsibleDeploy("${deployHosts}", "-m ping")
                 }
