@@ -23,7 +23,7 @@ pipeline {
         stage("Checkout"){
             steps {
                 script {
-                    sty {
+                    try {
                         "${runOpts}" == "GitlabPush"
                     } catch(e) {
                         print(e)
