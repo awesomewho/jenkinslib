@@ -17,12 +17,12 @@ String deployHosts = "${env.deployHosts}"
 String scrUrl = "${env.srcUrl}"
 String branchName = "${env.branchName}"
 
-//if ( "${runOpts}" == "GitlabPush" ) {
-//    branchName = _branch - "refs/heads/"
-//    println("${branchName}")
-//    
-//    currentBuild.description = "Trigger by ${userName} ${branch}"
-//}
+if ( "${runOpts}" == "GitlabPush" ) {
+    branchName = _branch - "refs/heads/"
+    println("${branchName}")
+    
+    currentBuild.description = "Trigger by ${userName} ${branch}"
+}
 
 pipeline {
     agent { node { label "node1"} }
