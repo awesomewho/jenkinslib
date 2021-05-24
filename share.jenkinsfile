@@ -15,6 +15,7 @@ String deployHosts = "${env.deployHosts}"
 // 定义构建时传入的gitlab项目地址和分支名称
 String scrUrl = "${env.srcUrl}"
 String branchName = "${env.branchName}"
+String branch = "${env.branch}"
 println("${branchName}")
 println("${branch}")
 
