@@ -6,6 +6,7 @@
 // 实例化build方法
 def build = new org.devops.build()
 def deploy = new org.devops.deploy()
+def tools = new org.devops.tools()
 
 // 调用参数构建参数buildType buildShell和deployHosts
 String buildType = "${env.buildType}"
@@ -30,7 +31,7 @@ pipeline {
         stage("Checkout"){
             steps {
                 script {
-                    println{"下载代码"}
+                    tools.PrintMessage{"下载代码", "green"}
                     println("${branchName}")
                     checkout([$class: 'GitSCM', branches: [[name: "${branchName}"]], extensions: [], userRemoteConfigs: [[credentialsId: 'a61154ed-c244-4737-9393-1fc8b13c25d3', url: "${srcUrl}"]]]) 
                 }
@@ -40,6 +41,7 @@ pipeline {
         stage("Build") {
             steps {
                 script {
+                    tools.PrintMessage{"执行打包", "blue"}
                     build.Build(buildType, buildShell)
                     deploy.AnsibleDeploy("${deployHosts}", "-m ping")
                 }
