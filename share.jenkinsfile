@@ -65,7 +65,7 @@ pipeline {
                     -Dversion=${pomVersion} -Dpackaging=${pomPackaging} -DrepositoryId=maven_snapshot -Durl=http://192.168.9.69:8081/repository/maven_snapshot
                     """
                     
-                    deploy.AnsibleDeploy("${deployHosts}", "-m ping")
+                    //deploy.AnsibleDeploy("${deployHosts}", "-m ping")
                 }
             }
         }    
