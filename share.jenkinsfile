@@ -55,6 +55,7 @@ pipeline {
                     pomPackaging = "${pom.packaging}"
                     pomGroupId = "${pom.groupId}"
                     
+                    println("${jarName}")
                     println("${pomGroupId}-${pomArtifact}-${pomVersion}-${pomPackaging}")
                     
                     def mvnHome = tool "MAVEN"
