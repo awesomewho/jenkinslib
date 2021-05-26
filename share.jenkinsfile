@@ -58,11 +58,25 @@ pipeline {
                     println("${jarName}")
                     println("${pomGroupId}    ${pomArtifact}    ${pomVersion}    ${pomPackaging}")
                     
-                    def mvnHome = tool "MAVEN"
-                    sh """
-                    cd target
-                    ${mvnHome}/bin/mvn deploy:deploy-file -Dmaven.test.skip=ture -Dfile=${jarName} -DgroupId=${pomGroupId} -DartifactId=${pomArtifact} -Dversion=${pomVersion} -Dpackaging=${pomPackaging} -DrepositoryId=maven_snapshot -Durl=http://192.168.9.69:8081/repository/maven_snapshot
-                    """
+                    //def mvnHome = tool "MAVEN"
+                    //sh """
+                    //cd target
+                    //${mvnHome}/bin/mvn deploy:deploy-file -Dmaven.test.skip=ture -Dfile=${jarName} -DgroupId=${pomGroupId} -DartifactId=${pomArtifact} -Dversion=${pomVersion} -Dpackaging=${pomPackaging} -DrepositoryId=maven_snapshot -Durl=http://192.168.9.69:8081/repository/maven_snapshot
+                    //"""
+                    
+                    def repoName = "maven_snapshot"
+                    def filePath = "target/${jarName}"
+                    nexusArtifactUploader artifacts: [[artifactId: "${pomArtifact}", 
+                                        classifier: '', 
+                                        file: "${filePath}", 
+                                        type: "${pomPackaging}"]], 
+                            credentialsId: 'nexus-admin-user', 
+                            groupId: "${pomGroupId}", 
+                            nexusUrl: '192.168.9.69:8081', 
+                            nexusVersion: 'nexus3', 
+                            protocol: 'http', 
+                            repository: "${repoName}", 
+                            version: "${pomVersion}"
                     
                     //deploy.AnsibleDeploy("${deployHosts}", "-m ping")
                 }
