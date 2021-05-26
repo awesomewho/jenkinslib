@@ -70,7 +70,7 @@ pipeline {
                                         classifier: '', 
                                         file: "${filePath}", 
                                         type: "${pomPackaging}"]], 
-                            credentialsId: 'nexus-admin-user', 
+                            credentialsId: 'NexusAdminUser', 
                             groupId: "${pomGroupId}", 
                             nexusUrl: '192.168.9.69:8081', 
                             nexusVersion: 'nexus3', 
