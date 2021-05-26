@@ -61,7 +61,7 @@ pipeline {
                     """
                     sh cd target/
                     ${mvnHome}/bin/mvn deploy:deploy-file -Dmaven.test.skip=true -Dfile=${jarName} -DgroupId=${pomGroupId} -DartifactId=${pomArtifact} \
-                    -Dversion={$pomVersion} -Dpackaging=${pomPackaging} -DrepositoryId=maven_hosted -Durl=http://192.168.9.69:8081/repository/maven_snapshot/
+                    -Dversion=${pomVersion} -Dpackaging=${pomPackaging} -DrepositoryId=maven_hosted -Durl=http://192.168.9.69:8081/repository/maven_snapshot/
                     """
                     
                     deploy.AnsibleDeploy("${deployHosts}", "-m ping")
